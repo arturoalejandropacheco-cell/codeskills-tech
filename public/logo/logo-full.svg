@@ -1,0 +1,10 @@
+<svg width="180" height="28" viewBox="0 0 180 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Icon -->
+  <rect x="2" y="2" width="24" height="24" rx="6" fill="#f59e0b" fill-opacity="0.12" stroke="#f59e0b" stroke-width="1.5"/>
+  <path d="M9 10L14 7L19 10V18L14 21L9 18V10Z" stroke="#f59e0b" stroke-width="1.5" stroke-linejoin="round"/>
+  <circle cx="14" cy="14" r="2.5" fill="#f59e0b"/>
+  <!-- Text -->
+  <text x="36" y="19" font-family="-apple-system, system-ui, sans-serif" font-size="16" font-weight="600" letter-spacing="-0.5" fill="#e4e4e7">code</text>
+  <text x="72" y="19" font-family="-apple-system, system-ui, sans-serif" font-size="16" font-weight="600" letter-spacing="-0.5" fill="#f59e0b">skills</text>
+  <text x="112" y="19" font-family="-apple-system, system-ui, sans-serif" font-size="16" font-weight="600" letter-spacing="-0.5" fill="#71717a">.lat</text>
+</svg>
