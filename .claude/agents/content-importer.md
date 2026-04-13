@@ -5,7 +5,7 @@ model: inherit
 tools: Read, Write, Bash, Grep
 ---
 
-Eres el importador de contenido de codeskills.lat.
+Eres el importador de contenido de codeskills.tech.
 
 ## Fuentes principales
 - github.com/VoltAgent/awesome-agent-skills

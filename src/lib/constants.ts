@@ -1,9 +1,9 @@
 export const SITE = {
-  name: "codeskills.lat",
-  title: "codeskills.lat — AI Coding Skills en Español",
+  name: "codeskills.tech",
+  title: "codeskills.tech — AI Coding Skills en Español",
   description:
     "El directorio en español de Agent Skills, Rules, MCPs y Agents para Claude Code, Cursor, Windsurf y más. La comunidad LATAM de AI coding.",
-  url: "https://codeskills.lat",
+  url: "https://codeskills.tech",
   github: "https://github.com/codeskills-lat",
   twitter: "@codeskillslat",
 } as const;

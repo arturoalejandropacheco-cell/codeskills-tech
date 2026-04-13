@@ -1,24 +1,40 @@
-# codeskills.lat
+# codeskills.tech
 
 Directorio comunitario en español de Agent Skills, Rules, MCPs y Agents para Claude Code, Cursor, Windsurf y otros editores AI.
 
 ## Stack
 
-- Next.js 15 (App Router, Server Components por defecto)
+- Next.js 16 (App Router, Server Components por defecto)
 - TypeScript strict mode
-- Tailwind CSS + class-variance-authority + clsx + tailwind-merge
+- Tailwind CSS 4 + shadcn/ui (componentes en src/components/ui/)
 - Supabase (auth con GitHub OAuth, PostgreSQL)
+- Bun como package manager
 - Vercel para deploy
 
 ## Comandos
 
-- `npm run dev` — Dev server en localhost:3000
-- `npm run build` — Build de producción
-- `npm run lint` — ESLint
+- `bun run dev` — Dev server en localhost:3000
+- `bun run build` — Build de producción
+- `bun run lint` — ESLint
+- `bun run db:types` — Regenerar tipos TypeScript desde Supabase local
+
+## Supabase local
+
+- `supabase start` — Levanta Postgres, Auth, API (requiere Docker)
+- `supabase stop` — Detiene la instancia local
+- `supabase db reset` — Aplica migraciones y seeds
+- Studio local en http://127.0.0.1:54323
 
 ## Base de datos
 
 Migraciones en supabase/migrations/. Tablas: items, profiles, installs, categories.
+
+## Auth
+
+- GitHub OAuth via Supabase Auth
+- Middleware en src/middleware.ts refresca sesión
+- Server actions en src/app/login/actions.ts (signInWithGitHub, signOut)
+- Callback en src/app/auth/callback/route.ts
 
 ## Convenciones
 
@@ -29,6 +45,7 @@ Migraciones en supabase/migrations/. Tablas: items, profiles, installs, categori
 - Imports con @/ (ej: @/components/skill-card)
 - Solo Tailwind classes, NO CSS custom
 - cn() de @/lib/utils para clases condicionales
+- shadcn/ui: `bunx shadcn@latest add <componente>` para agregar nuevos
 
 ## Idioma
 

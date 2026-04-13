@@ -1,4 +1,4 @@
--- codeskills.lat database schema
+-- codeskills.tech database schema
 -- Migration: 001_initial_schema
 
 -- Categories table

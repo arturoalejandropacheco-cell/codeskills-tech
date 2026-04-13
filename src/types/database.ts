@@ -1,65 +1,30 @@
-// Database types for codeskills.lat
+import type { Database } from "./database.generated";
 
+export type { Database } from "./database.generated";
+
+// Strict union types for type safety
 export type ItemType = "skill" | "rule" | "mcp" | "agent" | "hook" | "plugin";
 export type ItemStatus = "draft" | "published" | "rejected";
 export type EditorType = "claude-code" | "cursor" | "windsurf" | "copilot" | "codex" | "gemini-cli";
 export type Language = "es" | "en" | "pt";
 
-export interface Item {
-  id: string;
-  title: string;
-  slug: string;
-  description: string;
-  content: string;
+// Row types with strict unions (generated types use plain `string`)
+type ItemRow = Database["public"]["Tables"]["items"]["Row"];
+export type Item = Omit<ItemRow, "type" | "status" | "language" | "editors"> & {
   type: ItemType;
-  editors: EditorType[];
-  tags: string[];
-  language: Language;
-  github_url: string | null;
-  author_id: string | null;
   status: ItemStatus;
-  installs: number;
-  upvotes: number;
-  featured: boolean;
-  created_at: string;
-  updated_at: string;
-  published_at: string | null;
-  // Joined fields
-  author?: Profile;
-}
-
-export interface Profile {
-  id: string;
-  username: string;
-  display_name: string | null;
-  avatar_url: string | null;
-  github_username: string | null;
-  bio: string | null;
-  country: string | null;
-  items_count: number;
-  created_at: string;
-  updated_at: string;
-}
-
-export interface Category {
-  id: string;
-  name: string;
-  slug: string;
-  icon: string | null;
-  item_count: number;
-  created_at: string;
-}
-
-export interface Install {
-  id: string;
-  item_id: string;
-  editor: string | null;
-  country: string | null;
-  created_at: string;
-}
+  language: Language;
+  editors: EditorType[];
+};
+export type ItemInsert = Database["public"]["Tables"]["items"]["Insert"];
+export type ItemUpdate = Database["public"]["Tables"]["items"]["Update"];
+export type Profile = Database["public"]["Tables"]["profiles"]["Row"];
+export type ProfileInsert = Database["public"]["Tables"]["profiles"]["Insert"];
+export type Category = Database["public"]["Tables"]["categories"]["Row"];
+export type Install = Database["public"]["Tables"]["installs"]["Row"];
+export type InstallInsert = Database["public"]["Tables"]["installs"]["Insert"];
 
 // UI-specific types
-
 export interface FilterState {
   type: ItemType | "all";
   editor: EditorType | "all";

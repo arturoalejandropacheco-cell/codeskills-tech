@@ -1,24 +1,27 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import "./globals.css";
 import { Geist } from "next/font/google";
 import { cn } from "@/lib/utils";
+import { createClient } from "@/lib/supabase/server";
+import { signOut } from "@/app/login/actions";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
   title: {
-    default: "codeskills.lat — AI Coding Skills en Español",
-    template: "%s | codeskills.lat",
+    default: "codeskills.tech — AI Coding Skills en Español",
+    template: "%s | codeskills.tech",
   },
   description:
     "El directorio en español de Agent Skills, Rules, MCPs y Agents para Claude Code, Cursor, Windsurf y más. La comunidad LATAM de AI coding.",
-  metadataBase: new URL("https://codeskills.lat"),
+  metadataBase: new URL("https://codeskills.tech"),
   openGraph: {
-    title: "codeskills.lat — AI Coding Skills en Español",
+    title: "codeskills.tech — AI Coding Skills en Español",
     description:
       "Descubre, comparte e instala configuraciones para tus agentes de código AI. Multi-editor, en español, para devs LATAM.",
-    siteName: "codeskills.lat",
+    siteName: "codeskills.tech",
     locale: "es_CL",
     type: "website",
   },
@@ -35,11 +38,16 @@ const navItems = [
   { label: "Agentes", href: "/agents" },
 ];
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
   return (
     <html
       lang="es"
@@ -79,12 +87,47 @@ export default function RootLayout({
               >
                 + Publicar
               </Link>
-              <Link
-                href="/login"
-                className="rounded-md bg-muted px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-border hover:text-foreground"
-              >
-                Ingresar
-              </Link>
+              {user ? (
+                <div className="flex items-center gap-3">
+                  <Link
+                    href={`/u/${user.user_metadata.user_name || "profile"}`}
+                    className="flex items-center gap-2 rounded-md px-2 py-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+                  >
+                    {user.user_metadata.avatar_url ? (
+                      <Image
+                        src={user.user_metadata.avatar_url}
+                        alt=""
+                        width={24}
+                        height={24}
+                        className="h-6 w-6 rounded-full"
+                      />
+                    ) : (
+                      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-muted text-xs">
+                        {(
+                          user.user_metadata.user_name ||
+                          user.email ||
+                          "U"
+                        )[0].toUpperCase()}
+                      </span>
+                    )}
+                  </Link>
+                  <form action={signOut}>
+                    <button
+                      type="submit"
+                      className="rounded-md px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                    >
+                      Salir
+                    </button>
+                  </form>
+                </div>
+              ) : (
+                <Link
+                  href="/login"
+                  className="rounded-md bg-muted px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-border hover:text-foreground"
+                >
+                  Ingresar
+                </Link>
+              )}
             </div>
           </div>
         </header>
@@ -96,7 +139,7 @@ export default function RootLayout({
         <footer className="border-t border-border">
           <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 py-8 sm:flex-row">
             <p className="text-sm text-muted-foreground">
-              codeskills.lat — AI Coding Skills en Español para devs LATAM
+              codeskills.tech — AI Coding Skills en Español para devs LATAM
             </p>
             <div className="flex items-center gap-4">
               <Link

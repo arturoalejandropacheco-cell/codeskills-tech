@@ -1,7 +1,8 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { getItemBySlug, getItems } from "@/lib/data";
+import { getItemBySlug, getRelatedItems } from "@/lib/data";
+import { trackInstall } from "@/app/actions/install";
 import {
   ITEM_TYPE_LABELS,
   ITEM_TYPE_ICONS,
@@ -25,7 +26,7 @@ export async function generateMetadata({
     title: `${item.title} — ${ITEM_TYPE_LABELS[item.type]}`,
     description: item.description,
     openGraph: {
-      title: `${item.title} | codeskills.lat`,
+      title: `${item.title} | codeskills.tech`,
       description: item.description,
     },
   };
@@ -37,12 +38,9 @@ export default async function SkillDetailPage({ params }: PageProps) {
 
   if (!item) notFound();
 
-  // Get related items by shared tags
-  const { items: relatedItems } = await getItems({
-    type: item.type,
-    limit: 4,
-  });
-  const related = relatedItems.filter((i) => i.id !== item.id).slice(0, 3);
+  const related = await getRelatedItems(item.id, item.tags);
+
+  const installWithId = trackInstall.bind(null, item.id);
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-8">
@@ -159,6 +157,16 @@ export default async function SkillDetailPage({ params }: PageProps) {
 
         {/* Sidebar */}
         <aside className="w-full shrink-0 space-y-6 lg:w-72">
+          {/* Install button */}
+          <form action={installWithId}>
+            <button
+              type="submit"
+              className="w-full rounded-lg bg-accent px-4 py-2.5 text-sm font-medium text-accent-foreground transition-colors hover:bg-accent/90"
+            >
+              ⬇ Registrar instalación
+            </button>
+          </form>
+
           {/* Install instructions */}
           <div className="rounded-lg border border-border bg-card p-5">
             <h3 className="font-medium">Cómo instalar</h3>

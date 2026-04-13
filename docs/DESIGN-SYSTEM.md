@@ -1,6 +1,6 @@
-# codeskills.lat — Sistema de diseño
+# codeskills.tech — Sistema de diseño
 
-Este documento define la identidad visual completa de codeskills.lat.
+Este documento define la identidad visual completa de codeskills.tech.
 Debe ser leído por Claude Code antes de crear o modificar cualquier
 componente visual del proyecto.
 
@@ -15,7 +15,7 @@ y verdes (claudedirectory.org) del ecosistema.
 ## Logo
 
 Archivos en `/public/logo/`:
-- `logo-full.svg` — Ícono + codeskills.lat (header desktop)
+- `logo-full.svg` — Ícono + codeskills.tech (header desktop)
 - `logo-compact.svg` — Ícono + codeskills (header mobile)
 - `logo-icon.svg` — Solo ícono 28x28 (favicon)
 - `logo-og.svg` — Ícono grande 512x512 (og:image, social)
@@ -37,7 +37,7 @@ que sugiere valor y precisión.
 </Link>
 
 // Header mobile — solo ícono
-<img src="/logo/logo-icon.svg" alt="codeskills.lat" width={24} height={24} />
+<img src="/logo/logo-icon.svg" alt="codeskills.tech" width={24} height={24} />
 ```
 
 ### Reglas del logo
@@ -338,7 +338,7 @@ Implementación:
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
-│ [⬡] codeskills.lat    Skills  Reglas  MCPs  Agentes    [+P] [Ing] │
+│ [⬡] codeskills.tech    Skills  Reglas  MCPs  Agentes    [+P] [Ing] │
 └──────────────────────────────────────────────────────────────┘
 
 - Sticky top con backdrop-blur

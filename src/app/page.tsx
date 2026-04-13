@@ -66,17 +66,18 @@ export default async function HomePage() {
 
           {/* Search bar */}
           <div className="mx-auto mt-10 max-w-xl">
-            <div className="flex items-center gap-2 rounded-lg border border-border bg-card p-1.5 shadow-lg shadow-black/20 transition-colors focus-within:border-accent/50">
+            <form action="/search" method="GET" className="flex items-center gap-2 rounded-lg border border-border bg-card p-1.5 shadow-lg shadow-black/20 transition-colors focus-within:border-accent/50">
               <span className="pl-3 text-muted-foreground">🔍</span>
               <input
                 type="text"
+                name="q"
                 placeholder="Buscar skills, reglas, MCPs..."
                 className="flex-1 bg-transparent py-2 text-sm outline-none placeholder:text-muted-foreground"
               />
-              <button className="rounded-md bg-accent px-4 py-2 text-sm font-medium text-accent-foreground transition-colors hover:bg-accent/90">
+              <button type="submit" className="rounded-md bg-accent px-4 py-2 text-sm font-medium text-accent-foreground transition-colors hover:bg-accent/90">
                 Buscar
               </button>
-            </div>
+            </form>
           </div>
 
           {/* Editor badges */}
