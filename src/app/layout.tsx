@@ -65,7 +65,7 @@ export default async function RootLayout({
                 <span className="text-lg text-accent">⚡</span>
                 <span>
                   code<span className="text-accent">skills</span>
-                  <span className="text-muted-foreground">.lat</span>
+                  <span className="text-muted-foreground">.tech</span>
                 </span>
               </Link>
               <nav className="hidden items-center gap-1 md:flex">
