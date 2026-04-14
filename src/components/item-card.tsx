@@ -36,8 +36,17 @@ export default function ItemCard({ item, compact = false }: ItemCardProps) {
             >
               {item.title}
             </h3>
-            <span className="text-xs text-muted-foreground">
+            <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
               {ITEM_TYPE_LABELS[item.type]}
+              {item.trust_level === "official" && (
+                <span className="rounded bg-emerald-500/10 px-1 py-0.5 text-[10px] text-emerald-500">✓ Oficial</span>
+              )}
+              {item.trust_level === "community" && item.security_status === "reviewed" && (
+                <span className="rounded bg-blue-500/10 px-1 py-0.5 text-[10px] text-blue-500">✓ Revisado</span>
+              )}
+              {item.trust_level === "user" && (
+                <span className="rounded bg-zinc-800 px-1 py-0.5 text-[10px] text-zinc-500">Comunidad</span>
+              )}
             </span>
           </div>
         </div>

@@ -73,6 +73,12 @@ export default async function SkillDetailPage({ params }: PageProps) {
             <span className="rounded-md bg-accent/10 px-2.5 py-1 text-xs font-medium text-accent">
               {ITEM_TYPE_LABELS[item.type]}
             </span>
+            {item.trust_level === "official" && (
+              <span className="rounded-md bg-emerald-500/10 px-2.5 py-1 text-xs text-emerald-500">✓ Oficial</span>
+            )}
+            {item.trust_level === "community" && item.security_status === "reviewed" && (
+              <span className="rounded-md bg-blue-500/10 px-2.5 py-1 text-xs text-blue-500">✓ Revisado</span>
+            )}
             {item.editors.map((editor) => (
               <span
                 key={editor}

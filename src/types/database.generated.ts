@@ -99,6 +99,11 @@ export type Database = {
           created_at: string;
           updated_at: string;
           published_at: string | null;
+          trust_level: string;
+          security_status: string;
+          security_notes: string | null;
+          security_score: number;
+          publish_batch: number | null;
         };
         Insert: {
           id?: string;
@@ -119,6 +124,11 @@ export type Database = {
           created_at?: string;
           updated_at?: string;
           published_at?: string | null;
+          trust_level?: string;
+          security_status?: string;
+          security_notes?: string | null;
+          security_score?: number;
+          publish_batch?: number | null;
         };
         Update: {
           id?: string;
@@ -139,6 +149,11 @@ export type Database = {
           created_at?: string;
           updated_at?: string;
           published_at?: string | null;
+          trust_level?: string;
+          security_status?: string;
+          security_notes?: string | null;
+          security_score?: number;
+          publish_batch?: number | null;
         };
         Relationships: [
           {

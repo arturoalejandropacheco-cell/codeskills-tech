@@ -7,14 +7,18 @@ export type ItemType = "skill" | "rule" | "mcp" | "agent" | "hook" | "plugin";
 export type ItemStatus = "draft" | "published" | "rejected";
 export type EditorType = "claude-code" | "cursor" | "windsurf" | "copilot" | "codex" | "gemini-cli";
 export type Language = "es" | "en" | "pt";
+export type TrustLevel = "official" | "community" | "user";
+export type SecurityStatus = "trusted" | "reviewed" | "flagged" | "pending";
 
 // Row types with strict unions (generated types use plain `string`)
 type ItemRow = Database["public"]["Tables"]["items"]["Row"];
-export type Item = Omit<ItemRow, "type" | "status" | "language" | "editors"> & {
+export type Item = Omit<ItemRow, "type" | "status" | "language" | "editors" | "trust_level" | "security_status"> & {
   type: ItemType;
   status: ItemStatus;
   language: Language;
   editors: EditorType[];
+  trust_level: TrustLevel;
+  security_status: SecurityStatus;
 };
 export type ItemInsert = Database["public"]["Tables"]["items"]["Insert"];
 export type ItemUpdate = Database["public"]["Tables"]["items"]["Update"];
